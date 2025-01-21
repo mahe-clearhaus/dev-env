@@ -1,0 +1,8 @@
+I switched to the mac version of US-intl which writes æøå differently than us-intl on linux and windows. 
+Then imported it into ukulele to make it write those chars the same way as on linux. 
+I also changed the tilde (~) key so that it is not a dead key.
+
+result is this bundle folder which you apply by copying it into
+	~/Library/Keyboard\ Layouts/
+(which is what deploy-local.sh does for you)
+

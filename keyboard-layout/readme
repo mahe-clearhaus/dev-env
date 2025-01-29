@@ -6,3 +6,6 @@ result is this bundle folder which you apply by copying it into
 	~/Library/Keyboard\ Layouts/
 (which is what deploy-local.sh does for you)
 
+caution when editing: always duplicate the layout and edit the duplicate. Dont try to edit a layout that is already installed as you could make your computer unusable
+
+consider adding .zshrc and .gitconfig and .gitignore

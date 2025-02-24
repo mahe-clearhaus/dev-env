@@ -41,5 +41,16 @@
 		<key>TISIntendedLanguage</key>
 		<string>en</string>
 	</dict>
+	<key>KLInfo_mahe 0.0.3</key>
+	<dict>
+		<key>TICapsLockLanguageSwitchCapable</key>
+		<false/>
+		<key>TISIconIsTemplate</key>
+		<false/>
+		<key>TISInputSourceID</key>
+		<string>org.sil.ukelele.keyboardlayout.mahe-layout.mahe0.0.3</string>
+		<key>TISIntendedLanguage</key>
+		<string>en</string>
+	</dict>
 </dict>
 </plist>

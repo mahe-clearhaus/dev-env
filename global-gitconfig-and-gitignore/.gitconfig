@@ -1,0 +1,16 @@
+[user]
+	name = Martin Henriksen
+	email = mahe@clearhaus.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7IQSCoMGEqL+AcoXr4MiM8CDOy7BlfEmLmpNXkLZmS
+[pull]
+	rebase = true
+[alias]
+	st = status
+[commit]
+	gpgsign = true
+[core]
+	excludesFile = ~/.gitignore
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

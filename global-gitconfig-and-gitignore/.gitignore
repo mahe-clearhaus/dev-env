@@ -1,0 +1,7 @@
+# This is the GLOBAL gitignore file for ignore things that are specific to my system.
+# This file is referenced by a configuration: git config --global core.excludesFile '~/.gitignore'
+.DS_Store
+.qlty
+.vscode
+
+

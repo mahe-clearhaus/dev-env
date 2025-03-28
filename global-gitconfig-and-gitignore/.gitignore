@@ -3,5 +3,6 @@
 .DS_Store
 .qlty
 .vscode
-
+coverage/
+.terraform.locl.hcl
 

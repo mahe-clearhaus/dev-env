@@ -33,3 +33,18 @@ alias srcenv='echo "use source \$AWS / cat \$AWS / ..."'
 alias clone='clone.sh'
 alias tf=terraform
 alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com'
+
+export PATH="/Users/martin.henriksen/scripts:$PATH"
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+# /opt/homebrew/bin must come before /bin in PATH so that `bash` will use /opt/homebrew/bin/bash instead of /bin/bash
+#export PATH="/opt/homebrew/bin:$PATH"
+
+
+# zoxide
+export _ZO_ECHO=1
+eval "$(zoxide init zsh --cmd cd)"
+eval "$(zoxide init zsh)"
+alias cs="gh copilot suggest --shell-out"
+alias ce="gh copilot explain"
+fortune
+

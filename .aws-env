@@ -1,7 +1,4 @@
 export AWS_ACCESS_KEY_ID=$(op read "op://Employee/AWS access key and secret key/username")
 export AWS_SECRET_ACCESS_KEY=$(op read "op://Employee/AWS access key and secret key/password")
+export GITHUB_TOKEN=$(op read "op://Employee/GITHUB_TOKEN/password")
 
-## Kyc monitoring
-# export PORT=8080
-# export SECRETS_MANAGER_ID=ch-test-kyc-monitoring
-# export SECRETS_MANAGER_CACHE_ID=ch-test-kyc-monitoring-cache

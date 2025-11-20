@@ -1,4 +1,10 @@
+echo "Exporting AWS env vars from 1password"
 export AWS_ACCESS_KEY_ID=$(op read "op://Employee/AWS access key and secret key/username")
 export AWS_SECRET_ACCESS_KEY=$(op read "op://Employee/AWS access key and secret key/password")
 export GITHUB_TOKEN=$(op read "op://Employee/GITHUB_TOKEN/password")
+export GITHUB_PERSONAL_ACCESS_TOKEN=$(op read "op://Employee/GITHUB_PERSONAL_ACCESS_TOKEN/token")
+export AWS_REGION="eu-west-1"
 
+
+echo "Logging into ECR with docker"
+aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com

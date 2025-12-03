@@ -16,15 +16,15 @@ export ECR_ENDPOINT=815915209444.dkr.ecr.eu-west-1.amazonaws.com
 
 
 # docker
-alias dcup='docker-compose up -d'
-alias dcdown='docker-compose down'
-alias dcr='docker-compose run --rm'
-alias dcb='docker-compose build'
-alias dcl='docker-compose logs -f'
-alias dce='docker-compose exec'
-alias dcp='docker-compose ps'
-alias dcdue='docker-compose down && docker-compose up -d && docker-compose exec'
-alias dcue='docker-compose up -d && docker-compose exec'
+alias dcup='docker compose up -d'
+alias dcdown='docker compose down'
+alias dcr='docker compose run --rm'
+alias dcb='docker compose build'
+alias dcl='docker compose logs -f'
+alias dce='docker compose exec'
+alias dcp='docker compose ps'
+alias dcdue='docker compose down && docker compose up -d && docker compose exec'
+alias dcue='docker compose up -d && docker compose exec'
 
 
 # misc
@@ -37,14 +37,18 @@ alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login 
 export PATH="/Users/martin.henriksen/scripts:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 # /opt/homebrew/bin must come before /bin in PATH so that `bash` will use /opt/homebrew/bin/bash instead of /bin/bash
-#export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
+#python
+alias python=python3
+alias pip=pip3
 
-# zoxide
-export _ZO_ECHO=1
-eval "$(zoxide init zsh --cmd cd)"
-eval "$(zoxide init zsh)"
-alias cs="gh copilot suggest --shell-out"
-alias ce="gh copilot explain"
-fortune
+# zoxide 
+# export _ZO_ECHO=1
+# eval "$(zoxide init zsh --cmd cd)"
+# eval "$(zoxide init zsh)"
+# alias cs="gh copilot suggest --shell-out"
+# alias ce="gh copilot explain"
 
+# export rbenv variables for use by ruby LSP
+# rbenv exec ruby -rjson -e "puts JSON.dump(ENV.to_h)" > /dev/null

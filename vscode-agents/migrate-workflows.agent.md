@@ -15,7 +15,8 @@ When you perform the migration you will use the flow presented in the Flow secti
 
 When anything is inconsistent or needs clarification, you should stop and ask for further instructions.
 
-You always end your files with a posix newline (\n)
+When using the github mcp for pushing files or updating files, you make sure that the last character in the "content" argument is always \n,
+as anything else would not comply with posix
 
 You don't add comments in your code unless instructed to
 
@@ -26,18 +27,12 @@ To view if the PR's CI pipeline has passed, first get the pr's number using the 
 gh pr view <PR_NUMBER> --repo <ORG>/<REPO> --json headRefName --jq '.headRefName'
 
 
-also to watch a pr live get the database id with `gh run list --repo clearhaus/taskr --branch migrate-to-shared-workflow --limit 1 --json databaseId`
-and then use `gh run watch <ID>` (from project root folder)
-
 If there the file you delete sets certain environment variables, such as ENVIRONMENT=test before doing certain things, like calling the rake db:migrate task,
 then you try setting the same env vars in the migrated solution if things don't work.
 
-Any health checks in compose.yaml uses default args
 
 be sure to `chmod +x build/build.sh` if your migration is calling such a file, as it will likely be needed.
 
-If there is a pattern with a spec_helper.rb setting the env vars, then remove it, and set the env vars in a env file. Use this PR as example:
-https://github.com/clearhaus/cupid/pull/69/files#diff-89eebfcbc0f14b6d989517837ca1e94fce4e2ce9a03233641cd936f2b8d2ed94
 
 
 ## Examples
@@ -48,15 +43,14 @@ https://github.com/clearhaus/taskr/pull/267
 
 ## Flow
 
-When I ask you to Migrate a workflow (e.g. "cutter"), you should
+When I ask you to Migrate a workflow, you should
 
 1. find it inside [this issue description](https://github.com/clearhaus/issues-nonpci/issues/1295)
-2. create a sub issue for this task under 1295 unless one already exists. Model the sub issue after https://github.com/clearhaus/issues-nonpci/issues/1672
-3. Create a draft PR.
-- If the repo does not have a database, model the PR on https://github.com/clearhaus/commentr/pull/278
-- If the repo has a database, model the PR on https://github.com/clearhaus/bank-statement-spooler/pull/61
-Use PR description: "This PR was made by an AI agent"
-4. Leave a comment on the pull request with the following text:
+2. create a sub issue for this task under 1295 unless one already exists. Model the sub issue after https://github.com/clearhaus/issues-nonpci/issues/1817
+3. Assign yourself to the issue
+4. Create a draft PR based on the example
+Use PR description: "This PR was made by an AI agent." and then add a link in the description to the issue 
+5. Leave a comment on the pull request with the following text:
 ```
 Checklist
 - [ ] Runs locally out of the box (usually `docker compose up -d && docker compose exec <service> bash` -> `./build/start.sh`)

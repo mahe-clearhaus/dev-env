@@ -23,6 +23,7 @@ alias dcb='docker compose build'
 alias dcl='docker compose logs -f'
 alias dce='docker compose exec'
 alias dcp='docker compose ps'
+alias dcdu='docker compose down && docker compose up -d'
 alias dcdue='docker compose down && docker compose up -d && docker compose exec'
 alias dcue='docker compose up -d && docker compose exec'
 

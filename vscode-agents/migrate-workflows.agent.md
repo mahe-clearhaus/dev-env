@@ -15,8 +15,7 @@ When you perform the migration you will use the flow presented in the Flow secti
 
 When anything is inconsistent or needs clarification, you should stop and ask for further instructions.
 
-When using the github mcp for pushing files or updating files, you make sure that the last character in the "content" argument is always \n,
-as anything else would not comply with posix
+You always end your files with a newline, and using the github mcp for pushing files or updating files, you make sure that the last character in the "content" argument is always \n as nothing else would comply with posix
 
 You don't add comments in your code unless instructed to
 
@@ -26,12 +25,9 @@ You don't add comments in your code unless instructed to
 To view if the PR's CI pipeline has passed, first get the pr's number using the list command a
 gh pr view <PR_NUMBER> --repo <ORG>/<REPO> --json headRefName --jq '.headRefName'
 
+call the new build file build.yml like the deleted one, even though the example has build-and-test.yml
 
-If there the file you delete sets certain environment variables, such as ENVIRONMENT=test before doing certain things, like calling the rake db:migrate task,
-then you try setting the same env vars in the migrated solution if things don't work.
-
-
-be sure to `chmod +x build/build.sh` if your migration is calling such a file, as it will likely be needed.
+delete any build/build.sh and instead add the command to the build target in the makefile.
 
 
 
@@ -40,16 +36,24 @@ be sure to `chmod +x build/build.sh` if your migration is calling such a file, a
 Use this migration as a base example
 https://github.com/clearhaus/taskr/pull/267
 
+check if there is a spec/spec_helper.rb that overwrites env vars. If there is, move 
+
+those env vars to an env file like in the example
+
+Also, move the build command from build/build.sh to makefile, like in the example.
+
+If the service uses another a postgres service, then that service should be called e.g. taskr-db (even though it's taskr-datalayer in the example)
+
 
 ## Flow
 
 When I ask you to Migrate a workflow, you should
 
-1. find it inside [this issue description](https://github.com/clearhaus/issues-nonpci/issues/1295)
+
 2. create a sub issue for this task under 1295 unless one already exists. Model the sub issue after https://github.com/clearhaus/issues-nonpci/issues/1817
-3. Assign yourself to the issue
+3. Assign yourself (mahe-clearhaus) to the issue
 4. Create a draft PR based on the example
-Use PR description: "This PR was made by an AI agent." and then add a link in the description to the issue 
+Use PR description: "This PR was made by an AI agent." and then add a link in the description to the issue. Set the "when" column to "now"
 5. Leave a comment on the pull request with the following text:
 ```
 Checklist
@@ -64,9 +68,11 @@ When done, squash any subsequent commits and push -f
 
 
 If I ask you to "check" instead of "migrate" then you should
-- Try `docker compose up -d && docker compose exec <service> bash` -> `./build/start.sh` and tick off the "image is in ECR" box on the PR comment if true.
-- try `make test` and tick box if true.
-- check the latest image on ECR for this service contains a commit SHA that matches the last commit. Tick box if true
+- Try `docker compose up -d && docker compose exec <service> build/start.sh` and tick off the "image is in ECR" box if it tries to start the service.
+    - it might not succeed as many service require a connection to AWS that you wont have, so if it fails with that reason, then tick the box anyway. If it fails
+         with another kind of error then consider it a failure
+- try `make test` and tick box if tests run and all pass.
+- check that there is an image on ECR for this service called "commit-<SHA>" where <SHA> is the commit sha that matches the last commit. Tick box if true
 - If any of these could not be verified then tell me which.
 
 
@@ -82,4 +88,3 @@ x-env_file: &env_file
     - path: .env
       required: false
 ```
-(https://github.com/clearhaus/casr-spooler/pull/282/files)

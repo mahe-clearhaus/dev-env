@@ -31,8 +31,7 @@ alias dcue='docker compose up -d && docker compose exec'
 # misc
 export AWS=~/src/dev-env/.aws-env
 alias srcenv='echo "use source \$AWS / cat \$AWS / ..."'
-alias clone='clone.sh'
-alias chkpsh='checkpush.sh'
+alias pushnew='git branch --show-current | xargs git push -u origin'
 alias tf=terraform
 alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com'
 
@@ -45,13 +44,3 @@ export PATH="/opt/homebrew/bin:$PATH"
 #python
 alias python=python3
 alias pip=pip3
-
-# zoxide 
-# export _ZO_ECHO=1
-# eval "$(zoxide init zsh --cmd cd)"
-# eval "$(zoxide init zsh)"
-# alias cs="gh copilot suggest --shell-out"
-# alias ce="gh copilot explain"
-
-# export rbenv variables for use by ruby LSP
-# rbenv exec ruby -rjson -e "puts JSON.dump(ENV.to_h)" > /dev/null

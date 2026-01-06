@@ -2,8 +2,8 @@
 
 # Checks if your image has been pushed to ecr using $HEAD and your current project
 
-REPO=$(basename "$(git rev-parse --show-toplevel)")
-SHA=$(git rev-parse HEAD)
+REPO=$(basename "$(git rev-parse --show-toplevel)") 
+SHA=$(git rev-parse HEAD) || exit 1
 
 TAGS=$(aws ecr list-images --repository-name "$REPO" --query 'imageIds[].imageTag' --output text)
 IMAGE=$(echo "$TAGS" | tr '\t' '\n' | grep -E "(^|-)${SHA}$" | head -n1) # ai 

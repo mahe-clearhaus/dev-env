@@ -34,16 +34,37 @@ delete any build/build.sh and instead add the command to the build target in the
 ## Examples
 
 Use this migration as a base example
-https://github.com/clearhaus/taskr/pull/267
+You should base your migration on PR 267 for repo `taskr`. Use the github MCP to read it.
 
+
+### Remove env vars from spec_helper
 check if there is a spec/spec_helper.rb that overwrites env vars. If there is, move 
 
 those env vars to an env file like in the example
 
+### build command in makefile
 Also, move the build command from build/build.sh to makefile, like in the example.
 
+### Db service name
 If the service uses another a postgres service, then that service should be called e.g. taskr-db (even though it's taskr-datalayer in the example)
 
+### Dependabot
+If the repository is using terminator.yml, then it should be migrated to dependabot.yml, like in the example
+
+Not that dependabot.yml requires
+
+```
+permissions:
+  contents: read
+  actions: write
+```
+to be added in the build workflow, like in the taskr example.
+
+### Commands
+
+Add your compose commands like this, defaulting to manual start
+>  command: sleep infinity # manual start
+>  # command: ./build/start.sh # auto start
 
 ## Flow
 
@@ -57,23 +78,14 @@ Use PR description: "This PR was made by an AI agent." and then add a link in th
 5. Leave a comment on the pull request with the following text:
 ```
 Checklist
-- [ ] Runs locally out of the box (usually `docker compose up -d && docker compose exec <service> bash` -> `./build/start.sh`)
 - [ ] Can `make test` after checking out OR required commands are in top of README.md
+- [ ] Runs locally out of the box (usually `docker compose up -d && docker compose exec <service> bash` -> `./build/start.sh`)
 - [ ] Image is in ECR
 ```
 4.  Make 
 The first commit message of a migration is always "Use shared workflow"
 When done, squash any subsequent commits and push -f
 5. Link the issue and PR to me for review
-
-
-If I ask you to "check" instead of "migrate" then you should
-- Try `docker compose up -d && docker compose exec <service> build/start.sh` and tick off the "image is in ECR" box if it tries to start the service.
-    - it might not succeed as many service require a connection to AWS that you wont have, so if it fails with that reason, then tick the box anyway. If it fails
-         with another kind of error then consider it a failure
-- try `make test` and tick box if tests run and all pass.
-- check that there is an image on ECR for this service called "commit-<SHA>" where <SHA> is the commit sha that matches the last commit. Tick box if true
-- If any of these could not be verified then tell me which.
 
 
 ## Rules

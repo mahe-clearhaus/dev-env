@@ -1,23 +1,35 @@
-// Place your key bindings in this file to override the defaults
+// GOOD KEYS NOT USED:
+// CMD + e
+// CMD + shift + h
+// 
+// EXPERIMENTS:
+// cmd (+shift) [ for focus and move tabs
+//
+// cmd + - for back instead of zoom out
+// frees up cmd + \+
+// ctrl + -/+ to zoom
+//
+// Use replace instead of find
+//
 [
+    // Unbind
     {
-        "key": "k shift+cmd",
-        "command": "editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
+        "key": "cmd+down",
+        "command": "-explorer.openAndPassFocus",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
     },
     {
-        "key": "shift+cmd+k",
-        "command": "-editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
+        "key": "cmd+k shift+cmd+right",
+        "command": "-workbench.action.moveEditorRightInGroup"
     },
     {
-        "key": "shift+cmd+k",
-        "command": "editor.action.deleteLines"
+        "key": "cmd+k shift+cmd+left",
+        "command": "-workbench.action.moveEditorLeftInGroup"
     },
     {
-        "key": "alt+cmd+z",
-        "command": "workbench.action.terminal.sizeToContentWidth",
-        "when": "terminalFocus && terminalHasBeenCreated && terminalIsOpen || terminalFocus && terminalIsOpen && terminalProcessSupported"
+        "key": "shift+cmd+d",
+        "command": "-workbench.view.debug",
+        "when": "viewContainer.workbench.view.debug.enabled"
     },
     {
         "key": "alt+z",
@@ -25,35 +37,18 @@
         "when": "terminalFocus && terminalHasBeenCreated && terminalIsOpen || terminalFocus && terminalIsOpen && terminalProcessSupported"
     },
     {
-        "key": "ctrl+alt+w",
-        "command": "editor.action.toggleWordWrap"
+        "key": "shift+cmd+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
     },
     {
         "key": "alt+z",
         "command": "-editor.action.toggleWordWrap"
     },
     {
-        "key": "shift+alt+m",
-        "command": "workbench.action.toggleMaximizedPanel"
-    },
-    {
-        "key": "ctrl+shift+m",
-        "command": "workbench.action.toggleMaximizedPanel",
-        "when": "panelAlignment == 'center' || panelPosition != 'bottom' && panelPosition != 'top'"
-    },
-    {
-        "key": "shift+cmd+g",
-        "command": "workbench.view.scm",
-        "when": "workbench.scm.active"
-    },
-    {
         "key": "ctrl+shift+g",
         "command": "-workbench.view.scm",
         "when": "workbench.scm.active"
-    },
-    {
-        "key": "shift+cmd+a",
-        "command": "workbench.action.focusFirstEditorGroup"
     },
     {
         "key": "cmd+1",
@@ -65,96 +60,41 @@
         "when": "!terminalFocus"
     },
     {
-        "key": "shift+cmd+c",
-        "command": "workbench.action.terminal.focus",
-        "when": "terminal.active"
-    },
-    {
         "key": "ctrl+`",
         "command": "-workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
     },
     {
-        "key": "cmd+m",
-        "command": "workbench.action.toggleMaximizedPanel",
-        "when": "panelFocus"
+        "key": "cmd+shift+h", // was removed because of collision but can add back if we want... Don't think we want though?
+        "command": "-workbench.action.replaceInFiles",
     },
     {
-        "key": "cmd+m",
-        "command": "workbench.action.closePanel",
-        "when": "editorTextFocus && panelVisible"
+        "key": "cmd+shift+j",
+        "command": "-workbench.action.search.toggleQueryDetails"
     },
     {
-        "command": "runCommands",
-        "key": "cmd+m",
-        "when": "editorFocus",
-        "args": {
-          "commands": [
-            "workbench.action.closePanel"
-            // I FAILED TO MAKE IT SO THAT HITTING CTRL + M AGAIN WILL BRING THE PANEL BACK.
-            // using toggle will focus the panel, and you cant get the focus back to the editor for whatever reason
-            // The technology does not yet exist
-            // "workbench.action.focusFirstEditorGroup",
-          ]
-        }
+        "key": "enter",
+        "command": "-renameFile",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    },
+    // Bind
+    {
+        "key": "shift+cmd+k",
+        "command": "editor.action.deleteLines"
     },
     {
-        "key": "ctrl+shift+pageup",
-        "command": "workbench.action.moveEditorLeftInGroup"
+        "key": "cmd+k cmd+d",
+        "command": "workbench.action.openGlobalKeybindingsFile"
+    },
+    { // not used much so far
+        "key": "cmd+shift+0",
+        "command": "workbench.actions.treeView.aws.explorer.collapseAll",
+        "when": "treeView.aws.explorer.enableCollapseAll && sideBarFocus"
     },
     {
-        "key": "cmd+k shift+cmd+left",
-        "command": "-workbench.action.moveEditorLeftInGroup"
-    },
-    {
-        "key": "ctrl+shift+pagedown",
-        "command": "workbench.action.moveEditorRightInGroup"
-    },
-    {
-        "key": "cmd+k shift+cmd+right",
-        "command": "-workbench.action.moveEditorRightInGroup"
-    },
-    {
-        "key": "ctrl+pagedown",
-        "command": "workbench.action.nextEditor"
-    },
-    {
-        "key": "ctrl+pageup",
-        "command": "workbench.action.previousEditor"
-    },
-    {
-        "key": "cmd+e",
-        "command": "github.copilot.chat.explain"
-    },
-    {
-        "key": "cmd+d",
-        "command": "expand_region",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+w",
-        "command": "-expand_region",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+cmd+c",
-        "command": "openInIntegratedTerminal",
-        "when": "explorerViewletFocus && filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "shift+cmd+d",
-        "command": "undo_expand_region",
-        "when": "editorHasSelection && editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+w",
-        "command": "-undo_expand_region",
-        "when": "editorHasSelection && editorTextFocus"
-    },
-    {
-        "key": "shift+cmd+d",
-        "command": "-workbench.view.debug",
-        "when": "viewContainer.workbench.view.debug.enabled"
+        "key": "shift+cmd+0",
+        "command": "search.action.collapseSearchResults",
+        "when": "viewHasSomeCollapsibleResult" // add '&& search has focus' ...
     },
     {
         "key": "f2",
@@ -163,17 +103,221 @@
     },
     {
         "key": "enter",
-        "command": "-renameFile",
-        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-    },
-    {
-        "key": "enter",
         "command": "explorer.openAndPassFocus",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
     },
+    // {
+    //     "key": "cmd+t",
+    //     "command": "editor.action.insertSnippet"
+    // },
+    { // could use native runCommands instead of extension
+        "key": "cmd+t",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                // "editor.action.commentLine",
+                // "editor.action.insertSnippet"
+            ]
+        }
+    },
+    { // Hyperkey + P (for "Pop out") pops group out to window. Might be cool to do this with just the tab.
+        // If a command can move tab to new group then could chain that with move group to window
+        "key": "ctrl+shift+alt+cmd+p",
+        "command": "workbench.action.moveEditorGroupToNewWindow"
+    },
     {
-        "key": "cmd+down",
-        "command": "-explorer.openAndPassFocus",
-        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
-    }
+        "key": "ctrl+shift+alt+cmd+]", // these keys are awesome.
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+shift+alt+cmd+[",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    // # TODO mahe (2026-02-19): 
+    // {  // could expirement with cmd + [ to focus left and cmd + shift + [ to move left
+    //     "key": "ctrl+cmd+shift+[",
+    //     "command": "workbench.action.moveEditorLeftInGroup"
+    // },
+    // {
+    //     "key": "ctrl+cmd+shift+]",
+    //     "command": "workbench.action.moveEditorRightInGroup"
+    // },
+    {
+        "key": "ctrl+pagedown", // effectively ctrl+fn+down rebind to cmd + [ in above mentioned expriment
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+pageup",
+        "command": "workbench.action.previousEditor"
+    },
+    // Grow/shrink whatever is focused
+    // Only enabled for Terminal And Sidebar (which might make it useless,  we will see)
+    // doesn't really work that nicely for editor focus. And aux bar won't work because it's being aux bar
+    // Aux focus = !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen
+    {
+        "key": "cmd+'",
+        "command": "workbench.action.increaseViewSize",
+        "when": "sideBarFocus || (!editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen) || panelFocus"
+    },
+    {
+        "key": "cmd+shift+'",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "sideBarFocus || (!editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen) || panelFocus"
+    },
+    // 
+    // maximize
+    {
+        "key": "cmd+m",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "panelFocus"
+    },
+    // JA TAK!!!! cmd+m kan helt Maximize og de-maximize editor
+    // Og kan åbne konsol uden at fokus hvilket ellers havde opgivet
+    // Will reopen terminal after de-maximizing, but not aux bar
+    // Requires the multi-command (ryuta46.multi-command) extension: https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command
+    {
+        "key": "cmd+m",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleMaximizeEditorGroup",
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.closeAuxiliaryBar",
+                "workbench.action.togglePanel",
+                "workbench.action.focusFirstEditorGroup"
+            ]
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+m",
+        "command": "workbench.action.toggleMaximizedAuxiliaryBar",
+        "when": "activeAuxiliary && !inQuickOpen && !sideBarFocus && !editorFocus &&!terminalFocus"
+        // as always, Aux focus = !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen
+    },
+    // It is not possible to maximise main sideBar in vscode
+    // 
+    //
+    // The Focus / Close Stuff system:
+    //
+    {
+        "key": "shift+cmd+a",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    // Aux bar (simple)
+    {
+        "key": "shift+cmd+d",
+        "command": "claudeVSCodeSidebarSecondary.focus",
+        "when": "auxiliaryBarVisible && (editorFocus || terminalFocus || sideBarFocus || inQuickOpen)"
+    },
+    {
+        "key": "shift+cmd+d",
+        "command": "workbench.action.closeAuxiliaryBar",
+        "when": "auxiliaryBarVisible && !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen "
+    },
+    // Terminal
+    {
+        "key": "shift+cmd+c",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        // If a file is focused in Explorer then open the terminal in that window
+        // so instead of `cd ...` can quick open a file and go explorer->terminal
+        // Would be nice if it could focus the right terminal if it already exists
+        // currently it always opens a new one
+        "key": "shift+cmd+c",
+        "command": "openInIntegratedTerminal",
+        "when": "explorerViewletFocus && filesExplorerFocus && !inputFocus"
+    },
+    // 
+    // Sidebar / explorer
+    { // Navigate to active file in editor
+        "key": "cmd+shift+e",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    { // Just focus if there is no file to navigate to
+        "key": "cmd+shift+e",
+        "command": "workbench.view.explorer",
+        "when": "resourceFilename != ''"
+    },
+    { // Only close sidebar if Explorer viewlet is focused (not if e.g. find or extentions)
+        "key": "cmd+shift+e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletFocus"
+    },
+    { // Git binding
+        "key": "shift+cmd+g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    { // Close git
+        "key": "shift+cmd+g",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "focusedView == 'workbench.scm'"
+    },
+    { // Close extensions
+        "key": "shift+cmd+x",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "activeViewlet == 'workbench.view.extensions'" // there is a chance that this method also work for above
+    },
+    // aws
+    { // aws binding
+        "key": "shift+cmd+i",
+        "command": "aws.explorer.focus"
+    },
+    { // close aws. this one doens't work. haven't found a way to detect view
+        "key": "shift+cmd+i",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "activeViewlet == 'workbench.view.extension.aws-explorer'"
+    },
+    { // search logs
+        "key": "shift+cmd+l",
+        "command": "aws.cwl.searchLogGroup"
+    },
+    // 
+    // Can't use this to close cmd+f (find in files), since we are already using it to toggle the include/exclude
+    {
+        "key": "cmd+shift+f",
+        "command": "workbench.action.search.toggleQueryDetails",
+        "when": "searchViewletFocus"
+    },
+    // # TODO mahe (2026-02-19): 
+    // Experiment:
+    // just use replace instead of find? Now you don't have to learn that the hotkey for replace was cmd+shift+h
+    // Holding off on this idea for now so i don't accidently find replace everything. Enough changes right now as it is.
+    // {
+    //     "key": "cmd+shift+f",
+    //     "command": "workbench.action.replaceInFiles",
+    // },
+    // {
+    //     "key": "cmd+f",
+    //     "command": "editor.action.startFindReplaceAction",
+    // },
+    ////
 ]
+// sideBar with capital B usually. Like sideBarFocus.
+// BUT NOT in toggleSidebarVisibility
+// 
+// it's called toggleMaximizedPanel (with a D)
+// but toggleMaximizeEditorGroup....
+// 
+// Also sidebar is toggleXvisibility, whereas panel is just togglePanel.
+// You cannot logically deduce the name of anything.
+// 
+// 
+// and on and on and on.
+// 
+// Sidebar and auxiliary bar behave very differently
+// Lots of things you can't do. For examples you can't "show/unhide panel" without focusing it.
+// You have to install an extension that let you do multiple things with one command,
+// and then use that to "toggle" the panel, and then refocus something else after.
+// Vscode already has "runCommands" for doing multiple things in one command. But that one doesn't
+// correctly unfocus the bar... In short, it's all very finicky
+// 
+// Cannot detect focus in auxiliarybar. Have a huge workaround for that where i basically ruled it out by
+// detecting focus in everything else.
+// 
+// and on and on and on...
+// 
+// AAAAAA so close microsoft!!!!!!!!!

@@ -29,7 +29,7 @@ alias dcue='docker compose up -d && docker compose exec'
 
 
 # misc
-export AWS=~/src/dev-env/.aws-env
+export AWS=~/src/dev-env/source_aws/.aws-env
 alias srcenv='echo "use source \$AWS / cat \$AWS / ..."'
 alias pushnew='git branch --show-current | xargs git push -u origin'
 alias tf=terraform
@@ -44,3 +44,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 #python
 alias python=python3
 alias pip=pip3
+
+#hydra
+export HYDRA=~/src/hydra
+alias lntsv='ls -1 | xargs -I {} ln {} {}.tsv'
+alias int='TEST_SUITE=integration make test -f ~/src/hydra/Makefile'
+alias all='make test -f ~/src/hydra/Makefile'

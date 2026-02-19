@@ -109,10 +109,6 @@
     // SINGLES
     //
     {
-        "key": "shift+cmd+k",
-        "command": "editor.action.deleteLines"
-    },
-    {
         "key": "cmd+k cmd+d",
         "command": "workbench.action.openGlobalKeybindingsFile"
     },
@@ -136,13 +132,12 @@
         "command": "explorer.openAndPassFocus",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
     },
-    //
     // Keep old version in case revert
     // {
     //     "key": "cmd+t",
     //     "command": "editor.action.insertSnippet"
     // },
-    { // cannot place todo on code line with this. revert if annoying
+    { // insert todo snippet (comment line first)
         "key": "cmd+t",
         "command": "extension.multiCommand.execute",
         "args": {
@@ -156,7 +151,22 @@
     // GROUPS
     //
     //
+    // Delete
+    //
+    {
+        "key": "shift+cmd+k",
+        "command": "editor.action.deleteLines"
+    },
+    {
+        "key": "cmd+shift+j",
+        "command": "deleteAllLeft"
+    },
+    {
+        "key": "cmd+shift+l",
+        "command": "deleteAllRight"
+    },
     // Zoom / navigate
+    //
     {
         "key": "ctrl+-",
         "command": "workbench.action.zoomOut"
@@ -180,35 +190,35 @@
         "command": "workbench.action.navigateForward",
         "when": "canNavigateForward"
     },
-    { // Hyperkey + P (for "Pop out") pops group out to window. Might be cool to do this with just the tab.
+    // Focus / move tabs
+    { // Hyperkey + P ("Pop out") pops group out to window. Might be cool to do this with just the tab.
         // If a command can move tab to new group then could chain that with move group to window
         "key": "ctrl+shift+alt+cmd+p",
         "command": "workbench.action.moveEditorGroupToNewWindow"
     },
     {
-        "key": "ctrl+shift+alt+cmd+]", // these keys are awesome.
+        "key": "cmd+[",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "cmd+]",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "cmd+shift+[",
+        "command": "workbench.action.moveEditorLeftInGroup"
+    },
+    {
+        "key": "cmd+shift+]",
+        "command": "workbench.action.moveEditorRightInGroup"
+    },
+    {
+        "key": "ctrl+shift+alt+cmd+]", // hyperkey
         "command": "workbench.action.focusNextGroup"
     },
     {
         "key": "ctrl+shift+alt+cmd+[",
         "command": "workbench.action.focusPreviousGroup"
-    },
-    // # TODO mahe (2026-02-19): 
-    // {  // could expirement with cmd + [ to focus left and cmd + shift + [ to move left
-    //     "key": "ctrl+cmd+shift+[",
-    //     "command": "workbench.action.moveEditorLeftInGroup"
-    // },
-    // {
-    //     "key": "ctrl+cmd+shift+]",
-    //     "command": "workbench.action.moveEditorRightInGroup"
-    // },
-    {
-        "key": "ctrl+pagedown", // effectively ctrl+fn+down rebind to cmd + [ in above mentioned expriment
-        "command": "workbench.action.nextEditor"
-    },
-    {
-        "key": "ctrl+pageup",
-        "command": "workbench.action.previousEditor"
     },
     //
     // Grow/shrink
@@ -270,12 +280,12 @@
     {
         "key": "shift+cmd+d",
         "command": "claudeVSCodeSidebarSecondary.focus",
-        "when": "auxiliaryBarVisible && (editorFocus || terminalFocus || sideBarFocus || inQuickOpen)"
+        "when": "editorFocus || terminalFocus || sideBarFocus || inQuickOpen" // !auxBarFocus
     },
     {
         "key": "shift+cmd+d",
         "command": "workbench.action.closeAuxiliaryBar",
-        "when": "auxiliaryBarVisible && !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen "
+        "when": "auxiliaryBarVisible && !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen" // !uxBarFocus
     },
     // Terminal
     {
@@ -332,10 +342,6 @@
         "key": "shift+cmd+i",
         "command": "workbench.action.toggleSidebarVisibility",
         "when": "activeViewlet == 'workbench.view.extension.aws-explorer'"
-    },
-    { // search logs
-        "key": "shift+cmd+l",
-        "command": "aws.cwl.searchLogGroup"
     },
     // 
     // Can't use this to close cmd+f (find in files), since we are already using it to toggle the include/exclude

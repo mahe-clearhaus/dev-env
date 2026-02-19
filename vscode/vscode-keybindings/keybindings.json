@@ -137,6 +137,22 @@
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
     },
     //
+    // Keep old version in case revert
+    // {
+    //     "key": "cmd+t",
+    //     "command": "editor.action.insertSnippet"
+    // },
+    { // cannot place todo on code line with this. revert if annoying
+        "key": "cmd+t",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "editor.action.commentLine",
+                "editor.action.insertSnippet"
+            ]
+        }
+    },
+    //
     // GROUPS
     //
     //
@@ -163,25 +179,6 @@
         "key": "cmd+=",
         "command": "workbench.action.navigateForward",
         "when": "canNavigateForward"
-    },
-    //
-    // Keep old version in case revert
-    // {
-    //     "key": "cmd+t",
-    //     "command": "editor.action.insertSnippet"
-    // },
-    { // new version to auto comment in correct language before inserting todo snippet
-        // will comment the current line which before we didn't (could insert todo on code line before)
-        // consider reverting if annoying
-        // also could possibly use native runCommands instead of extension
-        "key": "cmd+t",
-        "command": "extension.multiCommand.execute",
-        "args": {
-            "sequence": [
-                "editor.action.commentLine",
-                "editor.action.insertSnippet"
-            ]
-        }
     },
     { // Hyperkey + P (for "Pop out") pops group out to window. Might be cool to do this with just the tab.
         // If a command can move tab to new group then could chain that with move group to window

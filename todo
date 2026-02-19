@@ -1,4 +1,8 @@
 Try to get the system wide shortcuts in here (from system settings -> keyboard -> shortcuts -> app shortcuts)
+(mostly un-bindings I guess)
 
-add vim macros.
-add a vim macro for pick->reword
+add configs for:
+- raycast
+- rectangle
+- contexts
+- karabiner-elements

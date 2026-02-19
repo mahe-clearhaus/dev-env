@@ -77,7 +77,37 @@
         "command": "-renameFile",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
     },
+    // Unbind Zoom / navigate
+    {
+        "key": "cmd+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+shift+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+shift+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
     // Bind
+    //
+    // SINGLES
+    //
     {
         "key": "shift+cmd+k",
         "command": "editor.action.deleteLines"
@@ -106,17 +136,50 @@
         "command": "explorer.openAndPassFocus",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
     },
+    //
+    // GROUPS
+    //
+    //
+    // Zoom / navigate
+    {
+        "key": "ctrl+-",
+        "command": "workbench.action.zoomOut"
+    },
+    {
+        "key": "ctrl+=",
+        "command": "workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+-",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    // { // forward 1.
+    //     "key": "shift+cmd+-",
+    //     "command": "workbench.action.navigateForward",
+    //     "when": "canNavigateForward"
+    // },
+    { // forward 2. 
+        "key": "cmd+=",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    //
+    // Keep old version in case revert
     // {
     //     "key": "cmd+t",
     //     "command": "editor.action.insertSnippet"
     // },
-    { // could use native runCommands instead of extension
+    { // new version to auto comment in correct language before inserting todo snippet
+        // will comment the current line which before we didn't (could insert todo on code line before)
+        // consider reverting if annoying
+        // also could possibly use native runCommands instead of extension
         "key": "cmd+t",
         "command": "extension.multiCommand.execute",
         "args": {
             "sequence": [
-                // "editor.action.commentLine",
-                // "editor.action.insertSnippet"
+                "editor.action.commentLine",
+                "editor.action.insertSnippet"
             ]
         }
     },
@@ -150,7 +213,9 @@
         "key": "ctrl+pageup",
         "command": "workbench.action.previousEditor"
     },
-    // Grow/shrink whatever is focused
+    //
+    // Grow/shrink
+    //
     // Only enabled for Terminal And Sidebar (which might make it useless,  we will see)
     // doesn't really work that nicely for editor focus. And aux bar won't work because it's being aux bar
     // Aux focus = !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen

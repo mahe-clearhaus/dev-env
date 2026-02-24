@@ -1,6 +1,7 @@
 Try to get the system wide shortcuts in here (from system settings -> keyboard -> shortcuts -> app shortcuts)
 (mostly un-bindings I guess)
 
+
 Consider if its worth it to make a little deploy script instead of symlinking
 
 

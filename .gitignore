@@ -1,0 +1,2 @@
+# Override global .gitignore on .claude
+!claude-commands/**/.claude

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/martin.henriksen/.claude/**)",
+      "Bash(git -C ~/src/hydra status --short)",
+      "Read(//Users/martin.henriksen/src/hydra/**)",
+      "Bash(git -C ~/src/hydra rev-parse HEAD)",
+      "Bash(git -C ~/src/hydra log -1 --pretty=%s)",
+      "Bash(tf workspace show)",
+      "Bash(tf plan)"
+    ],
+    "additionalDirectories": [
+      "/Users/martin.henriksen/src/infrastructure-nonpci/.claude"
+    ]
+  }
+}

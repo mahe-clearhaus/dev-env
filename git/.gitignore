@@ -4,5 +4,5 @@
 .qlty
 .vscode
 coverage/
-.terraform.locl.hcl
+**/.terraform.locl.hcl
 .claude

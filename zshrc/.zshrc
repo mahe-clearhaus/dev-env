@@ -1,4 +1,6 @@
-alias ll='ls -la'
+alias ll='ls -l'
+alias la='ls -lA'
+
 export GPG_TTY=$(tty)
 
 # qlty

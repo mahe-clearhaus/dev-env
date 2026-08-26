@@ -39,6 +39,16 @@ alias chkjson='check-jsonschema' # basically just added this alias to remind mys
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
+## minify and de_minify are for use with CUSTOM_DATA that both hex and base64 encoded
+minify() {
+    echo -n "${1//-/}" | xxd -r -p | base64
+}
+
+deminify() {                               
+    hex=$(echo -n "$1" | base64 -d | xxd -p)
+    echo "${hex:0:8}-${hex:8:4}-${hex:12:4}-${hex:16:4}-${hex:20:12}"
+}
+
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/martin.henriksen/src/dev-env/scripts:$PATH" # Could put this in local/bin

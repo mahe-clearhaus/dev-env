@@ -32,13 +32,10 @@ alias dcue='docker compose up -d && docker compose exec'
 
 # misc
 export AWS=~/src/dev-env/source_aws/.aws-env
-alias srcenv='echo "use source \$AWS / cat \$AWS / ..."'
 alias pushnew='git branch --show-current | xargs git push -u origin'
 alias tf=terraform
 alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com'
-
 alias chkjson='check-jsonschema' # basically just added this alias to remind myself that check-jsonschema exists
-
 
 
 export PATH="$HOME/.local/bin:$PATH"

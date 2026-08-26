@@ -52,3 +52,5 @@ export HYDRA=~/src/hydra
 alias lntsv='ls -1 | xargs -I {} ln {} {}.tsv'
 alias int='TEST_SUITE=integration make test -f ~/src/hydra/Makefile'
 alias all='make test -f ~/src/hydra/Makefile'
+alias skip='export HYDRA_SKIP_DBMIGRATE=1'
+alias unskip='export HYDRA_SKIP_DBMIGRATE=0'

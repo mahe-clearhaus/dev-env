@@ -37,6 +37,10 @@ alias pushnew='git branch --show-current | xargs git push -u origin'
 alias tf=terraform
 alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com'
 
+alias chkjson='check-jsonschema' # basically just added this alias to remind myself that check-jsonschema exists
+
+
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/martin.henriksen/src/dev-env/scripts:$PATH" # Could put this in local/bin
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"

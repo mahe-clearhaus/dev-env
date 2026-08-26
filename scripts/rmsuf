@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+# Exit immediately if no argument is provided
+if [ -z "$1" ]; then
+    echo "Error: Please provide a suffix to remove."
+    echo "Usage: $0 <suffix>"
+    exit 1
+fi
+
+SUFFIX="$1"
+MATCH_PATTERN=""
+INCLUDE_EXT=false
+
+# Ask user how to handle file extensions
+read -r -p "Does the suffix come before a file extension? (e.g., file${SUFFIX}.txt) (y/N): " ext_response
+if [[ "$ext_response" =~ ^[Yy]$ ]]; then
+    INCLUDE_EXT=true
+    # Matches files containing the suffix followed by a dot and an extension
+    MATCH_PATTERN="*${SUFFIX}.*"
+else
+    # Matches files where the suffix is at the absolute end
+    MATCH_PATTERN="*${SUFFIX}"
+fi
+
+FOUND_FILES=false
+echo ""
+echo "--- PREVIEWING RENAME CHANGES ---"
+
+# First pass: Preview changes
+for file in $MATCH_PATTERN; do
+    [ -e "$file" ] || continue
+    FOUND_FILES=true
+    
+    if [ "$INCLUDE_EXT" = true ]; then
+        # Extract the extension (everything after the last dot)
+        ext="${file##*.}"
+        # Strip the suffix AND the extension from the right, then re-append the extension
+        new_name="${file%"${SUFFIX}.${ext}"}.${ext}"
+    else
+        # Standard removal from the absolute end of the filename
+        new_name="${file%"$SUFFIX"}"
+    fi
+    
+    echo "Would rename: '$file' -> '$new_name'"
+done
+
+if [ "$FOUND_FILES" = false ]; then
+    echo "No matching files found."
+    exit 0
+fi
+
+# Ask for final confirmation before executing
+echo ""
+read -r -p "Do you want to apply these changes? (y/N): " confirm_response
+if [[ "$confirm_response" =~ ^[Yy]$ ]]; then
+    echo "Renaming files..."
+    
+    # Second pass: Execute renaming
+    for file in $MATCH_PATTERN; do
+        [ -e "$file" ] || continue
+        
+        if [ "$INCLUDE_EXT" = true ]; then
+            ext="${file##*.}"
+            new_name="${file%"${SUFFIX}.${ext}"}.${ext}"
+        else
+            new_name="${file%"$SUFFIX"}"
+        fi
+        
+        # Move safely without overwriting existing files
+        mv -n -- "$file" "$new_name"
+    done
+    echo "Done!"
+else
+    echo "Operation cancelled. No files were modified."
+fi

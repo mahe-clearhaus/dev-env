@@ -1,0 +1,86 @@
+# Places dev-env might want to track. `sync.sh scan` reports the ones that
+# exist on this machine but aren't in manifest.tsv. Purely advisory —
+# nothing here is synced until you add it to the manifest yourself.
+
+# shells
+~/.zshrc
+~/.zprofile
+~/.zshenv
+~/.bashrc
+~/.profile
+~/.config/fish
+~/.config/starship.toml
+~/.inputrc
+
+# terminals / multiplexers
+~/.config/ghostty
+~/.config/herdr
+~/.config/wezterm
+~/.config/alacritty
+~/.config/kitty
+~/.tmux.conf
+~/.config/zellij
+
+# git & forge
+~/.gitconfig
+~/.gitconfig-mbh
+~/.gitignore
+~/.gitattributes
+~/.config/git
+~/.config/gh/config.yml
+~/.config/gh-mbh/config.yml
+~/.config/glab-cli/config.yml
+~/.config/lazygit/config.yml
+~/.config/jj/config.toml
+
+# editors
+~/.config/nvim
+~/.vimrc
+~/.vim
+~/.ideavimrc
+~/.config/helix
+~/.config/zed
+~/Library/Application Support/Code/User/settings.json
+~/Library/Application Support/Code/User/keybindings.json
+~/Library/Application Support/Code/User/snippets
+~/Library/Application Support/Cursor/User/settings.json
+~/Library/Application Support/Cursor/User/keybindings.json
+
+# agents
+~/.claude/CLAUDE.md
+~/.claude/AGENTS.md
+~/.claude/settings.json
+~/.claude/commands
+~/.claude/skills
+~/.claude/hooks
+~/.claude/agents
+~/.claude/plugins/config.json
+~/.claude/keybindings.json
+~/.codex/config.toml
+~/.config/opencode
+~/.aider.conf.yml
+~/AGENTS.md
+
+# keyboard / os
+~/.config/karabiner
+~/.hammerspoon
+~/.config/aerospace
+~/.skhdrc
+~/.yabairc
+~/.config/raycast
+
+# tools
+~/.config/bat
+~/.config/eza
+~/.config/atuin/config.toml
+~/.config/direnv
+~/.config/ripgrep
+~/.ripgreprc
+~/.config/btop
+~/.config/k9s
+~/.ssh/config
+~/.config/mise/config.toml
+~/.tool-versions
+~/.default-gems
+~/.npmrc
+~/.curlrc

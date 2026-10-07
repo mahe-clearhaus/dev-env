@@ -1,0 +1,16 @@
+# Private (mbh) git identity — loaded only for repos under ~/mbh via includeIf.
+# Does not affect work repos; those keep the global Clearhaus user.* settings.
+# Herdr session "mbh" also sets GIT_AUTHOR_* / GIT_COMMITTER_* via fish conf.d
+# (same name/email) so session-based commits match even outside this path.
+[user]
+	name = Martin Henriksen
+	email = NartimHenriksen@users.noreply.github.com
+
+# HTTPS git (clone/fetch/push) as NartimHenriksen even when GH_CONFIG_DIR is unset
+# (e.g. Terminal/VS Code outside Herdr). Clears helpers then uses personal gh config.
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/env GH_CONFIG_DIR=/Users/martin.henriksen/.config/gh-mbh /opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/env GH_CONFIG_DIR=/Users/martin.henriksen/.config/gh-mbh /opt/homebrew/bin/gh auth git-credential

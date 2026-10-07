@@ -1,0 +1,47 @@
+# dev-env sync manifest
+#
+# One entry per line:  REPO_PATH <TAB> SOURCE_PATH
+#   REPO_PATH    relative to the repo root
+#   SOURCE_PATH  the live location on this machine (~ is expanded)
+# A trailing slash on both sides means "directory" (synced with --delete).
+# Lines starting with # are comments. Nothing outside this file is synced.
+#
+# Per-entry excludes: append  <TAB> ex:GLOB[,GLOB...]  as a third field.
+
+# --- shells -----------------------------------------------------------------
+zshrc/.zshrc	~/.zshrc
+fish/.config/fish/	~/.config/fish/	ex:fish_variables,completions/*.fish.tmp
+tmux/.tmux.conf	~/.tmux.conf
+
+# --- git --------------------------------------------------------------------
+git/.gitconfig	~/.gitconfig
+git/.gitconfig-mbh	~/.gitconfig-mbh
+git/.gitignore	~/.gitignore
+git/.gitattributes	~/.gitattributes
+
+# --- gh ---------------------------------------------------------------------
+# NOTE: only config.yml. hosts.yml holds OAuth tokens and is never synced.
+gh/.config/gh/config.yml	~/.config/gh/config.yml
+gh/.config/gh-mbh/config.yml	~/.config/gh-mbh/config.yml
+
+# --- terminal / multiplexer -------------------------------------------------
+ghostty/.config/ghostty/	~/.config/ghostty/
+herdr/.config/herdr/config.toml	~/.config/herdr/config.toml
+
+# --- editors ----------------------------------------------------------------
+neovim/.config/nvim/	~/.config/nvim/	ex:.git,spell,lazy/**
+vscode/vscode-settings/settings.json	~/Library/Application Support/Code/User/settings.json
+vscode/vscode-keybindings/keybindings.json	~/Library/Application Support/Code/User/keybindings.json
+cursor/settings.json	~/Library/Application Support/Cursor/User/settings.json
+cursor/keybindings.json	~/Library/Application Support/Cursor/User/keybindings.json
+
+# --- claude code ------------------------------------------------------------
+# Allowlist only: ~/.claude also holds sessions, history and caches.
+claude/.claude/CLAUDE.md	~/.claude/CLAUDE.md
+claude/.claude/settings.json	~/.claude/settings.json
+claude/.claude/commands/	~/.claude/commands/
+claude/.claude/skills/	~/.claude/skills/
+claude/.claude/hooks/	~/.claude/hooks/
+
+# --- keyboard / os ----------------------------------------------------------
+karabiner/.config/karabiner/	~/.config/karabiner/	ex:automatic_backups

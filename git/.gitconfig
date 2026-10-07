@@ -10,9 +10,25 @@
 	gpgsign = true
 [core]
 	excludesFile = ~/.gitignore
+	attributesFiles = /Users/martin.henriksen/.gitattributes
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
 [submodule]
 	recurse = true
+
+# Prefer `gh` over osxkeychain for GitHub HTTPS. Uses active GH_CONFIG_DIR when set
+# (mbh Herdr → ~/.config/gh-mbh / NartimHenriksen); otherwise default ~/.config/gh (Mahe).
+# Must stay above includeIf so ~/mbh can override with a personal baked-in GH_CONFIG_DIR.
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+# Loads ~/.gitconfig-mbh only for repos under ~/mbh (author + personal HTTPS creds).
+[includeIf "gitdir:/Users/martin.henriksen/mbh/"]
+	path = ~/.gitconfig-mbh

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(~/.claude/start/start:*)",
+      "Bash(~/.claude/solve/solve:*)",
+      "Bash(~/.claude/ship/ship:*)",
+      "Bash(ls:*)",
+      "Bash(git -C:*)"
+    ]
+  },
+  "model": "opus",
+  "effortLevel": "medium"
+}

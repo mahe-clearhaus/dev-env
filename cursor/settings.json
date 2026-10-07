@@ -1,0 +1,53 @@
+{
+    "window.openFoldersInNewWindow": "off",
+    "editor.renderWhitespace": "all",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "window.newWindowProfile": "Default",
+    "ruby.rubocop.configFilePath": "/Users/martin.henriksen/.config/.rubocop.yml",
+    "editor.tokenColorCustomizations": {
+        "[*Light*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#000"
+                    }
+                }
+            ]
+        },
+        "[*Dark*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#fff"
+                    }
+                }
+            ]
+        }
+    },
+    "window.autoDetectColorScheme": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.formatOnSave": true
+    },
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
+    "prettier.semi": false,
+    "prettier.bracketSpacing": false,
+    "prettier.printWidth": 151,
+    "prettier.arrowParens": "avoid",
+    "prettier.enable": false,
+    "explorer.confirmDelete": false,
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.statusBarItem.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "opa.dependency_paths.opa": "/Users/martin.henriksen/opa",
+    "opa.dependency_paths.regal": "/Users/martin.henriksen/regal",
+    "opa.languageServers": [
+        "regal"
+    ],
+    "editor.minimap.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "workbench.colorTheme": "Spinel"
+}

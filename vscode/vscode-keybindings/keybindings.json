@@ -2,10 +2,604 @@
 // CMD + e
 // CMD + d
 // Lots of hyperkey
+// 
+// EXPERIMENTS:
+// cmd (+shift) [ for focus and move tabs
+// # TODO mahe (2026-02-19): material icon theme
+//
+// cmd + - for back instead of zoom out // frees up cmd + \+
+// ctrl + -/+ to zoom
+//
+// Use replace instead of find
+//
+[
+    // Unbind
+    {
+        // "key": "cmd+down",
+        "command": "-explorer.openAndPassFocus",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
+    },
+    {
+        "key": "cmd+k shift+cmd+right",
+        "command": "-workbench.action.moveEditorRightInGroup"
+    },
+    {
+        "key": "cmd+k shift+cmd+left",
+        "command": "-workbench.action.moveEditorLeftInGroup"
+    },
+    {
+        "key": "shift+cmd+d",
+        "command": "-workbench.view.debug",
+        "when": "viewContainer.workbench.view.debug.enabled"
+    },
+    {
+        "key": "alt+z",
+        "command": "-workbench.action.terminal.sizeToContentWidth",
+        "when": "terminalFocus && terminalHasBeenCreated && terminalIsOpen || terminalFocus && terminalIsOpen && terminalProcessSupported"
+    },
+    {
+        "key": "shift+cmd+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+z",
+        "command": "-editor.action.toggleWordWrap"
+    },
+    {
+        "key": "cmd+1",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "shift+cmd+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "cmd+shift+h", // was removed because of collision but can add back if we want... Don't think we want though?
+        "command": "-workbench.action.replaceInFiles",
+    },
+    {
+        "key": "cmd+shift+j",
+        "command": "-workbench.action.search.toggleQueryDetails"
+    },
+    {
+        "key": "enter",
+        "command": "-renameFile",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    },
+    // Unbind Zoom / navigate
+    {
+        "key": "cmd+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+shift+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+shift+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    // Bind
+    //
+    // SINGLES
+    //
+    {
+        "key": "cmd+k cmd+d",
+        "command": "workbench.action.openGlobalKeybindingsFile"
+    },
+    { // not used much so far
+        "key": "cmd+shift+0",
+        "command": "workbench.actions.treeView.aws.explorer.collapseAll",
+        "when": "treeView.aws.explorer.enableCollapseAll && sideBarFocus"
+    },
+    {
+        "key": "shift+cmd+0",
+        "command": "search.action.collapseSearchResults",
+        "when": "viewHasSomeCollapsibleResult" // add '&& search has focus' ...
+    },
+    {
+        "key": "f2",
+        "command": "renameFile",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    },
+    {
+        "key": "enter",
+        "command": "explorer.openAndPassFocus",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
+    },
+    // Keep old version in case revert. Might revert
+    // {
+    //     "key": "cmd+t",
+    //     "command": "editor.action.insertSnippet"
+    // },
+    { // insert todo snippet (comment line first)
+        "key": "cmd+t",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "editor.action.commentLine",
+                "editor.action.insertSnippet",
+            ]
+        }
+    },
+    //
+    // GROUPS
+    //
+    //
+    // Delete
+    //
+    {
+        "key": "shift+cmd+k",
+        "command": "editor.action.deleteLines"
+    },
+    {
+        "key": "cmd+shift+j",
+        "command": "deleteAllLeft"
+    },
+    {
+        "key": "cmd+shift+l",
+        "command": "deleteAllRight"
+    },
+    // Zoom / navigate
+    //
+    {
+        "key": "cmd+-",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    // { // forward 1.
+    //     "key": "shift+cmd+-",
+    //     "command": "workbench.action.navigateForward",
+    //     "when": "canNavigateForward"
+    // },
+    { // forward 2. 
+        "key": "cmd+=",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    // Focus / move tabs
+    { // Hyperkey + P ("Pop out") pops group out to window. Might be cool to do this with just the tab.
+        // If a command can move tab to new group then could chain that with move group to window
+        // (used to collide with smartSelect.expand below; that moved to hyperkey+k so this is now the sole binding)
+        "key": "ctrl+alt+shift+p",
+        "command": "workbench.action.moveEditorGroupToNewWindow"
+    },
+    // Open Recent moved off ctrl+r (kept free for the terminal's reverse search)
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
+    },
+    {
+        "key": "cmd+r",
+        "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "cmd+[",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "cmd+]",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "cmd+shift+[",
+        "command": "workbench.action.moveEditorLeftInGroup"
+    },
+    {
+        "key": "cmd+shift+]",
+        "command": "workbench.action.moveEditorRightInGroup"
+    },
+    {
+        "key": "ctrl+alt+shift+]", // hyperkey
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+alt+shift+[",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    //
+    // Grow/shrink
+    //
+    // Only enabled for Terminal And Sidebar (which might make it useless,  we will see)
+    // doesn't really work that nicely for editor focus. And aux bar won't work because it's being aux bar
+    // Aux focus = !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen
+    {
+        "key": "cmd+'",
+        "command": "workbench.action.increaseViewSize",
+        "when": "sideBarFocus || (!editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen) || panelFocus"
+    },
+    {
+        "key": "cmd+shift+'",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "sideBarFocus || (!editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen) || panelFocus"
+    },
+    // 
+    // maximize
+    {
+        "key": "cmd+m",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "panelFocus"
+    },
+    // JA TAK!!!! cmd+m kan helt Maximize og de-maximize editor
+    // Og kan åbne konsol uden at fokus hvilket ellers havde opgivet
+    // Will reopen terminal after de-maximizing, but not aux bar
+    // Requires the multi-command (ryuta46.multi-command) extension: https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command
+    {
+        "key": "cmd+m",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleMaximizeEditorGroup",
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.closeAuxiliaryBar",
+                "workbench.action.togglePanel",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+m",
+        "command": "workbench.action.toggleMaximizedAuxiliaryBar",
+        "when": "activeAuxiliary && !inQuickOpen && !sideBarFocus && !editorFocus &&!terminalFocus"
+        // as always, Aux focus = !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen
+    },
+    // It is not possible to maximise main sideBar in vscode
+    // 
+    //
+    // The Focus / Close Stuff system:
+    //
+    {
+        "key": "shift+cmd+a",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    // Aux bar (simple)
+    // doesnt quite work with the unfocus because it can't detect the when. But its good enough as long 
+    // we don't often switch between different views in the aux bar.
+    {
+        "key": "shift+cmd+d",
+        "command": "workbench.action.closeAuxiliaryBar",
+        "when": "auxiliaryBarVisible && !editorFocus && !terminalFocus && !sideBarFocus && !inQuickOpen" // auxBarFocus
+    },
+    {
+        "key": "shift+cmd+d",
+        "command": "claudeVSCodeSidebarSecondary.focus",
+        "when": "editorFocus || terminalFocus || sideBarFocus || inQuickOpen" // !auxBarFocus
+    },
+    // Terminal
+    {
+        "key": "shift+cmd+c",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        // If a file is focused in Explorer then open the terminal in that window
+        // so instead of `cd ...` can quick open a file and go explorer->terminal
+        // Would be nice if it could focus the right terminal if it already exists
+        // currently it always opens a new one
+        "key": "shift+cmd+c",
+        "command": "openInIntegratedTerminal",
+        "when": "explorerViewletFocus && filesExplorerFocus && !inputFocus"
+    },
+    // 
+    // Sidebar / explorer
+    { // Navigate to active file in editor
+        "key": "cmd+shift+e",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    { // Just focus if there is no file to navigate to
+        "key": "cmd+shift+e",
+        "command": "workbench.view.explorer",
+        "when": "resourceFilename != ''"
+    },
+    { // Only close sidebar if Explorer viewlet is focused (not if e.g. find or extentions)
+        "key": "cmd+shift+e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletFocus"
+    },
+    { // Git binding
+        "key": "shift+cmd+g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    { // Close git
+        "key": "shift+cmd+g",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "focusedView == 'workbench.scm'"
+    },
+    { // Close extensions
+        "key": "shift+cmd+x",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "activeViewlet == 'workbench.view.extensions'" // there is a chance that this method also work for above
+    },
+    // aws
+    { // close aws. this one doens't work. haven't found a way to detect view
+        "key": "shift+cmd+i",
+        "command": "workbench.action.closeAuxiliaryBar"
+    },
+    { // aws binding
+        "key": "shift+cmd+i",
+        "command": "aws.explorer.focus",
+        "when": "editorFocus || terminalFocus || sideBarFocus || inQuickOpen" // !auxBarFocus
+    },
+    // 
+    // Can't use this to close cmd+f (find in files), since we are already using it to toggle the include/exclude
+    {
+        "key": "cmd+shift+f",
+        "command": "workbench.action.search.toggleQueryDetails",
+        "when": "searchViewletFocus"
+    },
+    // All the f12 stuff requires shopify's ruby LSP
+    {
+        "key": "cmd+f12",
+        "command": "editor.action.goToReferences",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "shift+f12",
+        "command": "-editor.action.goToReferences",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "alt+f12",
+        "command": "editor.action.revealDefinitionAside",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "cmd+k f12",
+        "command": "-editor.action.revealDefinitionAside",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "shift+f12",
+        "command": "editor.action.peekDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "alt+f12",
+        "command": "-editor.action.peekDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "shift+cmd+f12",
+        "command": "editor.action.referenceSearch.trigger"
+    },
+    {
+        "key": "alt+enter",
+        "command": "explorer.openToSide",
+        "when": "explorerViewletFocus && foldersViewVisible && !inputFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-explorer.openToSide",
+        "when": "explorerViewletFocus && foldersViewVisible && !inputFocus"
+    },
+    {
+        "key": "alt+enter",
+        "command": "search.action.openResultToSide",
+        "when": "fileMatchOrMatchFocus && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-search.action.openResultToSide",
+        "when": "fileMatchOrMatchFocus && searchViewletVisible"
+    },
+    {
+        "key": "alt+enter",
+        "command": "problems.action.openToSide",
+        "when": "problemFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-problems.action.openToSide",
+        "when": "problemFocus"
+    },
+    {
+        "key": "alt+enter",
+        "command": "openReferenceToSide",
+        "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand && !treestickyScrollFocused"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-openReferenceToSide",
+        "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand && !treestickyScrollFocused"
+    },
+    {
+        "key": "shift+cmd+0",
+        "command": "search.action.expandSearchResults",
+        "when": "!viewHasSomeCollapsibleResult"
+    },
+    {
+        "key": "shift+cmd+'",
+        "command": "workbench.action.decreaseViewWidth",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+'",
+        "command": "workbench.action.increaseViewWidth",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+h",
+        "command": "restoreEditors.restore"
+    },
+    { // temporary
+        "key": "cmd+shift+h",
+        "command": "restoreEditors.save"
+    },
+    {
+        "key": "cmd+k i",
+        "command": "workbench.action.closeOtherEditors"
+    },
+    {
+        "key": "alt+cmd+t",
+        "command": "-workbench.action.closeOtherEditors"
+    },
+    {
+        "key": "cmd+e",
+        "command": "cline.explainCode"
+    },
+    {
+        "key": "ctrl+alt+shift+enter",
+        "command": "workbench.action.reopenWithEditor"
+    },
+    {
+        "key": "cmd+numpad_subtract",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+numpad_add",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+numpad0",
+        "command": "-workbench.action.zoomReset"
+    },
+    {
+        "key": "ctrl+=",
+        "command": "editor.action.fontZoomIn",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+0",
+        "command": "editor.action.fontZoomReset",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "editor.action.fontZoomOut",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "workbench.action.terminal.fontZoomOut",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+=",
+        "command": "workbench.action.terminal.fontZoomIn",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+0",
+        "command": "workbench.action.terminal.fontZoomReset",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+alt+cmd+]", // shift+hyperkey is now cmd+hyperkey
+        "command": "workbench.action.moveEditorToNextGroup"
+    },
+    {
+        "key": "ctrl+cmd+right",
+        "command": "-workbench.action.moveEditorToNextGroup"
+    },
+    {
+        "key": "ctrl+shift+alt+cmd+[", // shift+hyperkey is now cmd+hyperkey
+        "command": "workbench.action.moveEditorToPreviousGroup"
+    },
+    {
+        "key": "ctrl+cmd+left",
+        "command": "-workbench.action.moveEditorToPreviousGroup"
+    },
+    {
+        "key": "ctrl+alt+shift+k",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+right",
+        "command": "-editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+cmd+right",
+        "command": "-editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+shift+j",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+left",
+        "command": "-editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+k shift+i",
+        "command": "workbench.action.closeEditorsInOtherGroups"
+    },
+    // # TODO mahe (2026-02-19): 
+    // Experiment:
+    // just use replace instead of find? Now you don't have to learn that the hotkey for replace was cmd+shift+h
+    // Holding off on this idea for now so i don't accidently find replace everything. Enough changes right now as it is.
+    // {
+    //     "key": "cmd+shift+f",
+    //     "command": "workbench.action.replaceInFiles",
+    // },
+    // {
+    //     "key": "cmd+f",
+    //     "command": "editor.action.startFindReplaceAction",
+    // },
+    ////
+]
+// sideBar with capital B usually. Like sideBarFocus.
+// BUT NOT in toggleSidebarVisibility
+// 
+// it's called toggleMaximizedPanel (with a D)
+// but toggleMaximizeEditorGroup....
+// 
+// Also sidebar is toggleXvisibility, whereas panel is just togglePanel.
+// You cannot logically deduce the name of anything.
+// 
+// 
+// and on and on and on.
+// 
+// Sidebar and auxiliary bar behave very differently
+// Lots of things you can't do. For examples you can't "show/unhide panel" without focusing it.
+// You have to install an extension that let you do multiple things with one command,
+// and then use that to "toggle" the panel, and then refocus something else after.
+// Vscode already has "runCommands" for doing multiple things in one command. But that one doesn't
+// correctly unfocus the bar... In short, it's all very finicky
+// 
+// Cannot detect focus in auxiliarybar. Have a huge workaround for that where i basically ruled it out by
+// detecting focus in everything else.
+// 
+// and on and on and on...
+// 
+// AAAAAA so close microsoft!!!!!!!!!
+/* Backup with shhift in hyperkey
+// GOOD KEYS NOT USED:
+// CMD + e
+// CMD + d
+// Lots of hyperkey
 // CMD + shift + h
 // 
 // EXPERIMENTS:
 // cmd (+shift) [ for focus and move tabs
+// # TODO mahe (2026-02-19): material icon theme
 //
 // cmd + - for back instead of zoom out
 // frees up cmd + \+
@@ -16,7 +610,7 @@
 [
     // Unbind
     {
-        "key": "cmd+down",
+        // "key": "cmd+down",
         "command": "-explorer.openAndPassFocus",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
     },
@@ -544,3 +1138,5 @@
 // and on and on and on...
 // 
 // AAAAAA so close microsoft!!!!!!!!!
+
+*/

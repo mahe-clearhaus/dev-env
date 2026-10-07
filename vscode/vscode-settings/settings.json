@@ -1,0 +1,125 @@
+{
+    "window.openFoldersInNewWindow": "off",
+    "editor.renderWhitespace": "all",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "window.newWindowProfile": "Default",
+    "editor.tokenColorCustomizations": {
+        "[*Light*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#000"
+                    }
+                }
+            ]
+        },
+        "[*Dark*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#fff"
+                    }
+                }
+            ]
+        }
+    },
+    "window.autoDetectColorScheme": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.formatOnSave": true
+    },
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
+    "prettier.semi": false,
+    "prettier.bracketSpacing": false,
+    "prettier.printWidth": 151,
+    "prettier.arrowParens": "avoid",
+    "prettier.enable": false,
+    "explorer.confirmDelete": false,
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.statusBarItem.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "opa.dependency_paths.opa": "/Users/martin.henriksen/opa",
+    "opa.dependency_paths.regal": "/Users/martin.henriksen/regal",
+    "opa.languageServers": [
+        "regal"
+    ],
+    "editor.minimap.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "solargraph.bundlerPath": "/Users/martin.henriksen/.rbenv/shims/bundle",
+    "editor.autoClosingBrackets": "never",
+    "[ruby]": {
+        "editor.defaultFormatter": "rubocop.vscode-rubocop"
+    },
+    "rubocop.mode": "enableViaGemfile",
+    "terminal.integrated.scrollback": 100000,
+    "chat.mcp.gallery.enabled": true,
+    "github.copilot.advanced": {},
+    "github.copilot.chat.systemPrompt": "Start every sentence with ASOIDJAOSIDJAOSIDJ if you can read this. Add comments with ASDASD after each line of code",
+    "terraform.mcp.server.enable": true,
+    "terraform.languageServer.terraform.logFilePath": "~/terraform-mcp-server-logs-does-it-work-mahe",
+    "terraform.languageServer.terraform.path": "/opt/homebrew/bin/terraform",
+    "aws.cloudformation.telemetry.enabled": false,
+    "makefile.configureOnOpen": true,
+    "workbench.editor.enablePreview": false,
+    "window.newWindowDimensions": "maximized",
+    "aws.resources.enabledResources": [
+        "AWS::ECS::Cluster",
+        "AWS::ECS::Service",
+        "AWS::ECS::TaskDefinition",
+        "AWS::IAM::Role",
+        "AWS::RDS::DBCluster",
+        "AWS::RDS::DBClusterParameterGroup",
+        "AWS::RDS::DBInstance",
+        "AWS::RDS::DBParameterGroup",
+        "AWS::RDS::GlobalCluster",
+        "AWS::SNS::Topic",
+        "AWS::SQS::Queue"
+    ],
+    "claudeCode.preferredLocation": "panel",
+    "markdown.extension.toc.omittedFromToc": {
+        "README.md": [
+            "# Contents"
+        ],
+        "docs/product-guide.md": [
+            "# Contents"
+        ],
+        "docs/dev-guide.md": [
+            "# Contents"
+        ]
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.folders.theme": "classic",
+    "csv.enabled": true,
+    "terminal.integrated.fontSize": 11,
+    "csv.separatorMode": "auto",
+    "csv.showTrailingEmptyRow": false,
+    "workbench.editorAssociations": {
+        "{git,gitlens,conflictResolution,vscode-local-history}:/**/*.tc.json": "default",
+        "{git,gitlens,conflictResolution,vscode-local-history}:/**/*.{asl.json,asl.yaml,asl.yml}": "default",
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.csv": "csv.editor"
+    },
+    "chat.viewSessions.orientation": "stacked",
+    "chat.disableAIFeatures": true,
+    "diffEditor.renderSideBySide": true,
+    "gitlens.ai.model": "gitkraken",
+    "gitlens.ai.gitkraken.model": "gemini:gemini-3-flash-preview",
+    "gitlens.statusBar.enabled": false,
+    "editor.lineNumbers": "relative",
+    "terminal.explorerKind": "external",
+    "terminal.external.osxExec": "Ghostty.app",
+    "terminal.integrated.agentHostProfile.linux": ""
+}

@@ -1,0 +1,32 @@
+return {
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+          },
+          files = {
+            hidden = true,
+            ignored = true,
+            exclude = {
+              ".git",
+              ".terraform",
+              "node_modules",
+              ".venv",
+              "vendor",
+              "target",
+              "dist",
+              "build",
+            },
+          },
+          grep = {
+            hidden = true,
+          },
+        },
+      },
+    },
+  },
+}

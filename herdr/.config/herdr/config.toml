@@ -1,56 +1,35 @@
 # Okay.
-# ctrl + hjkl = navigate panes
-# alt + hjkl = navigate tabs and workspaces
-# cmd + shift + [] = also navigate tabs
-# cmd + [] = cycle agents
 #
 # Identity split (mbh vs Mahe):
-# - Path: repos under ~/mbh → ~/.gitconfig-mbh via includeIf (author + personal gh creds)
-# - Session: Herdr "mbh" fish panes → GH_CONFIG_DIR + GIT_AUTHOR/COMMITTER_* via
-#   ~/.config/fish/conf.d/herdr-mbh-identity.fish. Global git uses `gh` as GitHub
-#   credential helper, so GH_CONFIG_DIR makes `git clone` personal too. Prefer
-#   `herdr-mbh` so the session server also gets that env for non-fish processes.
-#
+# 
+# `git` adds extra configs in ~/.gitconfig-mbh via includeif when the repo is inside ~/mbh
+# `gh`: new panes in the herdr mbh session sets GH_CONFIG_DIR which changes the identity to mbh
 onboarding = false
 
 [keys]
-# Prefix stays ctrl+b (tmux convention).
-#
-# Layout principle: cmd = the direct, no-prefix navigation tier.
-#   cmd+1..9                    -> workspaces (jump straight to one by number)
-#   cmd+[      / cmd+]          -> agents     (cycle previous/next)
-#   cmd+shift+[ / cmd+shift+]   -> tabs       (cycle previous/next)
-#   alt+j      / alt+k          -> workspaces (cycle previous/next)
-#   alt+h      / alt+l          -> tabs       (cycle previous/next, extra binding)
-# cmd/super chords can be swallowed by the host terminal or macOS before they
-# reach herdr -- if a binding below doesn't fire, check Ghostty's keybind
-# config for a conflicting global/system binding on that chord.
 
-# --- Direct jump by number ----------------------------------------------
-switch_workspace = "cmd+1..9"
-switch_tab = "prefix+1..9"
+# --- Tab cycling wihtout prefixes -------------------------------------------
 
-# --- Direct cycling, no prefix -------------------------------------------
-previous_agent = "cmd+["
-next_agent = "cmd+]"
-previous_tab = ["cmd+shift+[", "alt+h"]
-next_tab = ["cmd+shift+]", "alt+l"]
-previous_workspace = "alt+j"
-next_workspace = "alt+k"
+# Can't figure out what I prefer. cmd+shift+[] is nice for tabs 
 
-# --- Panes and everything structural: behind the prefix, tmux-style ------
-focus_pane_left = "ctrl+h"
-focus_pane_down = "ctrl+j"
-focus_pane_up = "ctrl+k"
-focus_pane_right = "ctrl+l"
-swap_pane_left = "ctrl+shift+h"
-swap_pane_down = "ctrl+shift+j"
-swap_pane_up = "ctrl+shift+k"
-swap_pane_right = "ctrl+shift+l"
-split_vertical = "prefix+|"
-split_horizontal = "prefix+minus"
-zoom = "prefix+z"
-new_tab = "prefix+c"
+previous_tab = "cmd+shift+["
+next_tab = "cmd+shift+]"
+
+# todo: move tab left right
+previous_workspace = ["cmd+[", "alt+h"]
+next_workspace = ["cmd+]", "alt+l"]
+previous_agent = "cmd+alt+ctrl+shift+["
+next_agent = "cmd+alt+ctrl+shift+]"
+
+# --- Pane focus and moving and creation ------
+# So let's try to get used to prefix+v too!
+# split_vertical = "prefix+|"
+# Defaults:
+# split_verital = "prefix+v"
+# split_horizontal = "prefix+minus"
+# zoom = "prefix+z" <-- aka maximize
+# new_tab = "prefix+c"
+last_pane = "alt+tab"
 
 # --- The axis-agnostic tool ---------------------------------------------
 # prefix+g opens navigate mode and it STAYS open: hjkl moves panes,
@@ -62,7 +41,15 @@ workspace_picker = "prefix+w"
 [ui]
 agent_panel_sort = "spaces"
 
+show_agent_labels_on_pane_borders = true
 [terminal]
 # New panes/tabs start fish instead of the login shell (zsh).
 default_shell = "/opt/homebrew/bin/fish"
 shell_mode = "login"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[ui.toast]
+delivery = "system"

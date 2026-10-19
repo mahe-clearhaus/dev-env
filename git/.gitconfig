@@ -11,6 +11,7 @@
 [core]
 	excludesFile = ~/.gitignore
 	attributesFiles = /Users/martin.henriksen/.gitattributes
+	editor = nvim
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -23,12 +24,14 @@
 # (mbh Herdr → ~/.config/gh-mbh / NartimHenriksen); otherwise default ~/.config/gh (Mahe).
 # Must stay above includeIf so ~/mbh can override with a personal baked-in GH_CONFIG_DIR.
 [credential "https://github.com"]
-	helper =
+	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper =
+	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
 
 # Loads ~/.gitconfig-mbh only for repos under ~/mbh (author + personal HTTPS creds).
 [includeIf "gitdir:/Users/martin.henriksen/mbh/"]
 	path = ~/.gitconfig-mbh
+[sequence]
+	editor = nvim

@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/martin.henriksen/.docker/bin"
+# End of Docker Desktop section.
+
 alias ll='ls -l'
 alias la='ls -lA'
 
@@ -30,12 +34,16 @@ alias dcdue='docker compose down && docker compose up -d && docker compose exec'
 alias dcue='docker compose up -d && docker compose exec'
 
 # misc
+set -gx CONF ~/.config
+set -gx C ~/.config
 set -gx AWS ~/src/dev-env/source_aws/.aws-env
 alias srcenv='echo "use source \$AWS / cat \$AWS / ..."'
 alias pushnew='git branch --show-current | xargs git push -u origin'
 alias tf=terraform
 alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com'
 alias chkjson='check-jsonschema' # basically just added this alias to remind myself that check-jsonschema exists
+alias gst='git status'
+alias lg='lazygit'
 
 function mkcd
     mkdir -p $argv[1]; and cd $argv[1]
@@ -62,10 +70,31 @@ fish_add_path "$HOME/.local/bin"
 alias python=python3
 alias pip=pip3
 
-# hydra
+# hydra 
 set -gx HYDRA ~/src/hydra
 alias lntsv='ls -1 | xargs -I {} ln {} {}.tsv'
 alias int='TEST_SUITE=integration make test -f ~/src/hydra/Makefile'
 alias all='make test -f ~/src/hydra/Makefile'
 alias skip='set -gx HYDRA_SKIP_DBMIGRATE 1'
 alias unskip='set -gx HYDRA_SKIP_DBMIGRATE 0'
+
+# Qwen Code PATH block begin
+set -gx PATH '/Users/martin.henriksen/.local/bin' $PATH
+# Qwen Code PATH block end
+
+# editor
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+
+# moving lazygit config from ~/Library/Application Support/ to ~/.config/ while hopefully doing the same for others
+# see also link in comment: https://github.com/jesseduffield/lazygit/issues/1341#issuecomment-885604075
+# This will probably not be necessary for future versions of lazygit as per: https://github.com/jesseduffield/lazygit/pull/3989
+set -gx XDG_DATA_DIRS /usr/local/share
+set -gx XDG_DATA_HOME ~/.local/share
+set -gx XDG_CONFIG_DIRS /etc/xdg
+set -gx XDG_CONFIG_HOME ~/.config
+set -gx XDG_CACHE_HOME ~/.cache
+
+remove ~/.local/bin/nvimt
+alias nt='echo "no longer using nvimt, use <C-/> instead'
+set -gx FISH ~/.config/fish/config.fish # `source $FISH`, `nt $FISH`

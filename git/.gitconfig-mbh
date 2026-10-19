@@ -3,7 +3,7 @@
 # Herdr session "mbh" also sets GIT_AUTHOR_* / GIT_COMMITTER_* via fish conf.d
 # (same name/email) so session-based commits match even outside this path.
 [user]
-	name = Martin Henriksen
+	name = NartimHenriksen
 	email = NartimHenriksen@users.noreply.github.com
 
 # HTTPS git (clone/fetch/push) as NartimHenriksen even when GH_CONFIG_DIR is unset

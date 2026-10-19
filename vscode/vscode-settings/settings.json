@@ -110,7 +110,8 @@
         "{git,gitlens,conflictResolution,vscode-local-history}:/**/*.tc.json": "default",
         "{git,gitlens,conflictResolution,vscode-local-history}:/**/*.{asl.json,asl.yaml,asl.yml}": "default",
         "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.csv": "csv.editor"
+        "*.csv": "csv.editor",
+        "*.md": "default"
     },
     "chat.viewSessions.orientation": "stacked",
     "chat.disableAIFeatures": true,
@@ -121,5 +122,6 @@
     "editor.lineNumbers": "relative",
     "terminal.explorerKind": "external",
     "terminal.external.osxExec": "Ghostty.app",
-    "terminal.integrated.agentHostProfile.linux": ""
+    "terminal.integrated.agentHostProfile.linux": "",
+    "claudeCode.hideOnboarding": true
 }

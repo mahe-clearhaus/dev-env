@@ -1,14 +1,38 @@
 #!/usr/bin/env bash
 # dev-env sync — copy live configs into this repo (and report drift).
-# Usage: .sync/sync.sh {status|pull|scan|check} [--only PATTERN]
+# Usage: sync-dev-env/sync.sh {status|pull|scan|check} [--only PATTERN]
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-MANIFEST="$REPO/.sync/manifest.tsv"
-CANDIDATES="$REPO/.sync/candidates.txt"
+MANIFEST="$REPO/sync-dev-env/manifest.tsv"
+CANDIDATES="$REPO/sync-dev-env/candidates.txt"
 ONLY=""
 
 GLOBAL_EXCLUDES=(--exclude '.DS_Store' --exclude '.git/' --exclude '*.log' --exclude '*.swp')
+
+usage() {
+  cat <<'USAGE'
+sync-dev-env/sync.sh — copy this machine's live configs INTO this repo.
+
+Direction is one-way: machine -> repo. It reads your live dotfiles
+(~/.config/fish, ~/.config/nvim, ~/.claude, ...) and writes only to this
+repo. It never writes to your machine, and there is no restore command.
+Directories mirror with --delete, so a file you removed on the machine is
+removed from the repo too. What is copied is listed in manifest.tsv.
+
+Usage: sync-dev-env/sync.sh <command> [--only PATTERN]
+
+Commands:
+  status   Show drift between the live configs and the repo. Writes nothing.
+  pull     Copy the live configs into the repo. Does not stage or commit.
+  scan     List config locations on this machine that the manifest doesn't track.
+  check    Scan the repo for secrets. Run before committing; non-zero on a hit.
+
+Options:
+  --only PATTERN   Limit status/pull to manifest entries whose repo path
+                   contains PATTERN, e.g. --only claude.
+USAGE
+}
 
 die() { printf 'error: %s\n' "$*" >&2; exit 1; }
 expand() { printf '%s' "${1/#\~/$HOME}"; }
@@ -96,7 +120,7 @@ cmd_scan() {
   done < "$CANDIDATES"
   [ "$found" -eq 0 ] && echo "  (none)"
   echo
-  echo "Nothing above is synced. Add a line to .sync/manifest.tsv to start tracking one."
+  echo "Nothing above is synced. Add a line to sync-dev-env/manifest.tsv to start tracking one."
 }
 
 cmd_check() {
@@ -115,7 +139,8 @@ cmd_check() {
 }
 
 main() {
-  local cmd="${1:-status}"; shift || true
+  if [ $# -eq 0 ]; then usage; exit 1; fi
+  local cmd="$1"; shift
   while [ $# -gt 0 ]; do
     case "$1" in --only) ONLY="${2:-}"; shift 2;; *) die "unknown option: $1";; esac
   done
@@ -125,7 +150,8 @@ main() {
     pull)   cmd_pull;;
     scan)   cmd_scan;;
     check)  cmd_check;;
-    *) die "usage: sync.sh {status|pull|scan|check} [--only PATTERN]";;
+    help|-h|--help) usage;;
+    *) usage >&2; exit 1;;
   esac
 }
 main "$@"

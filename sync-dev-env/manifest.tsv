@@ -11,7 +11,6 @@
 # --- shells -----------------------------------------------------------------
 zshrc/.zshrc	~/.zshrc
 fish/.config/fish/	~/.config/fish/	ex:fish_variables,completions/*.fish.tmp
-tmux/.tmux.conf	~/.tmux.conf
 
 # --- git --------------------------------------------------------------------
 git/.gitconfig	~/.gitconfig
@@ -36,12 +35,13 @@ cursor/settings.json	~/Library/Application Support/Cursor/User/settings.json
 cursor/keybindings.json	~/Library/Application Support/Cursor/User/keybindings.json
 
 # --- claude code ------------------------------------------------------------
-# Allowlist only: ~/.claude also holds sessions, history and caches.
+# Allowlist only: global CLAUDE.md, settings, hooks and skills (custom and third-party).
+# Nothing managed via claude.ai: skills/synced/ holds org-provisioned skills,
+# skills/.trash/ holds removed ones. Commands are not tracked.
 claude/.claude/CLAUDE.md	~/.claude/CLAUDE.md
 claude/.claude/settings.json	~/.claude/settings.json
-claude/.claude/commands/	~/.claude/commands/
-claude/.claude/skills/	~/.claude/skills/
 claude/.claude/hooks/	~/.claude/hooks/
+claude/.claude/skills/	~/.claude/skills/	ex:.trash,synced
 
 # --- keyboard / os ----------------------------------------------------------
 karabiner/.config/karabiner/	~/.config/karabiner/	ex:automatic_backups

@@ -11,11 +11,12 @@ onboarding = false
 # --- Tab cycling wihtout prefixes -------------------------------------------
 
 # Can't figure out what I prefer. cmd+shift+[] is nice for tabs 
-
 previous_tab = "cmd+shift+["
 next_tab = "cmd+shift+]"
 
-# todo: move tab left right
+move_tab_previous = "cmd+alt+shift+["
+move_tab_next = "cmd+alt+shift+]"
+
 previous_workspace = ["cmd+[", "alt+h"]
 next_workspace = ["cmd+]", "alt+l"]
 previous_agent = "cmd+alt+ctrl+shift+["
@@ -42,6 +43,7 @@ workspace_picker = "prefix+w"
 agent_panel_sort = "spaces"
 
 show_agent_labels_on_pane_borders = true
+status_indicators = "symbols"
 [terminal]
 # New panes/tabs start fish instead of the login shell (zsh).
 default_shell = "/opt/homebrew/bin/fish"

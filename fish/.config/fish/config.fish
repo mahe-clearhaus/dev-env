@@ -43,6 +43,8 @@ alias tf=terraform
 alias dockerlogin='aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 815915209444.dkr.ecr.eu-west-1.amazonaws.com'
 alias chkjson='check-jsonschema' # basically just added this alias to remind myself that check-jsonschema exists
 alias gst='git status'
+alias glo='git log --oneline'
+alias gl='git log'
 alias lg='lazygit'
 
 function mkcd
@@ -95,6 +97,10 @@ set -gx XDG_CONFIG_DIRS /etc/xdg
 set -gx XDG_CONFIG_HOME ~/.config
 set -gx XDG_CACHE_HOME ~/.cache
 
-remove ~/.local/bin/nvimt
-alias nt='echo "no longer using nvimt, use <C-/> instead'
+alias nt='echo "no longer using nvimt, use <C-/> instead"'
 set -gx FISH ~/.config/fish/config.fish # `source $FISH`, `nt $FISH`
+# ip 192.168.0.186
+# hostname n100
+# tailscale n100.taila5e9cc.ts.net
+alias mbh='herdr --remote mbh@n100.taila5e9cc.ts.net'
+alias venture='herdr --remote mbh@n100.taila5e9cc.ts.net --session venture'

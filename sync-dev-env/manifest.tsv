@@ -23,6 +23,8 @@ git/.gitattributes	~/.gitattributes
 gh/.config/gh/config.yml	~/.config/gh/config.yml
 gh/.config/gh-mbh/config.yml	~/.config/gh-mbh/config.yml
 
+lazygit/.config/lazygit/config.yml	~/.config/lazygit/config.yml
+
 # --- terminal / multiplexer -------------------------------------------------
 ghostty/.config/ghostty/	~/.config/ghostty/
 herdr/.config/herdr/config.toml	~/.config/herdr/config.toml

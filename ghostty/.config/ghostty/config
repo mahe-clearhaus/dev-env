@@ -10,18 +10,30 @@ window-decoration = none
 # Free the cmd chords herdr's keymap uses from Ghostty's own defaults, so
 # they reach herdr instead of being consumed by Ghostty first:
 #   super+[/]           -> was goto_split:previous/next
-#   super+1..9          -> was goto_tab:1..9 / last_tab (super+9)
+#   super+1..9          -> was goto_tab:1..9 / last_tab (super+9); defaults bind both super+N and super+digit_N, so unbind both
 #   super+shift+[/]     -> was previous_tab/next_tab
+#   super+shift+,/.     -> was reload_config / unbound
 keybind = super+[=unbind
 keybind = super+]=unbind
 keybind = super+1=unbind
+keybind = super+digit_1=unbind
 keybind = super+2=unbind
+keybind = super+digit_2=unbind
 keybind = super+3=unbind
+keybind = super+digit_3=unbind
 keybind = super+4=unbind
+keybind = super+digit_4=unbind
 keybind = super+5=unbind
+keybind = super+digit_5=unbind
 keybind = super+6=unbind
+keybind = super+digit_6=unbind
 keybind = super+7=unbind
+keybind = super+digit_7=unbind
 keybind = super+8=unbind
+keybind = super+digit_8=unbind
 keybind = super+9=unbind
+keybind = super+digit_9=unbind
 keybind = super+shift+[=unbind
 keybind = super+shift+]=unbind
+keybind = super+shift+,=unbind
+keybind = super+shift+.=unbind

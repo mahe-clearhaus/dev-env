@@ -8,11 +8,10 @@
       "Bash(git -C:*)"
     ]
   },
-  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
-        "matcher": "*",
+        "matcher": "^(startup|resume|clear|compact|fork)$",
         "hooks": [
           {
             "type": "command",
@@ -24,13 +23,20 @@
     ]
   },
   "enabledPlugins": {
-    "knowledgebase@clearhaus-ai-skills": true
+    "knowledgebase@clearhaus-ai-skills": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "clearhaus-ai-skills": {
       "source": {
         "source": "github",
         "repo": "clearhaus/ai-skills"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
       }
     }
   },
@@ -43,7 +49,7 @@
       "effortLevel": "medium"
     },
     "claude-opus-5-5": {
-      "effortLevel": "low"
+      "effortLevel": "medium"
     },
     "claude-sonnet-5-5": {
       "effortLevel": "medium"
@@ -80,5 +86,6 @@
       "**Org-specific CLIs**: None configured",
       "**Secrets management**: None configured"
     ]
-  }
+  },
+  "model": "claude-sonnet-5"
 }

@@ -1,4 +1,3 @@
 git:
   autoFetch: false # Fetch activates annoying fingerprint request
   overrideGpg: true
-  # test: dev-env-sync check 2026-10-21

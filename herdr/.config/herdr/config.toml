@@ -17,8 +17,8 @@ next_tab = "cmd+shift+]"
 move_tab_previous = "cmd+alt+shift+["
 move_tab_next = "cmd+alt+shift+]"
 
-previous_workspace = ["cmd+[", "alt+h"]
-next_workspace = ["cmd+]", "alt+l"]
+previous_workspace = ["cmd+["]
+next_workspace = ["cmd+]"]
 previous_agent = "cmd+alt+ctrl+shift+["
 next_agent = "cmd+alt+ctrl+shift+]"
 

@@ -45,5 +45,10 @@ claude/.claude/settings.json	~/.claude/settings.json
 claude/.claude/hooks/	~/.claude/hooks/
 claude/.claude/skills/	~/.claude/skills/	ex:.trash,synced
 
+# --- pi ---------------------------------------------------------------------
+# PATH shim that selects the work or mbh profile from the cwd. Only this one
+# file: the rest of ~/.local/bin is installed binaries and symlinks.
+pi/.local/bin/pi	~/.local/bin/pi
+
 # --- keyboard / os ----------------------------------------------------------
 karabiner/.config/karabiner/	~/.config/karabiner/	ex:automatic_backups

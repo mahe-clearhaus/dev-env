@@ -18,8 +18,8 @@ local function find(match)
   end
 end
 
-local is_claude = function(o, n)
-  return o.buftype == "terminal" and n:find("claude") ~= nil
+local is_pi = function(o, n)
+  return o.buftype == "terminal" and n:find("//%d+:pi") ~= nil -- term://{cwd}//{pid}:{cmd}, so match the cmd
 end
 
 -- the main window: files, dashboard, help etc. Not terminals or picker/layout windows
@@ -45,7 +45,7 @@ local panes = {
     key = "<D-3>",
     desc = "Terminal",
     match = function(o, n)
-      return o.buftype == "terminal" and not n:find("claude")
+      return o.buftype == "terminal" and not is_pi(o, n)
     end,
     open = function()
       Snacks.terminal(nil, { cwd = LazyVim.root() }) -- same opts as <c-/>, so it toggles this one
@@ -77,11 +77,10 @@ local panes = {
   },
   {
     key = "<D-2>",
-    desc = "Claude",
-    match = is_claude,
+    desc = "Pi",
+    match = is_pi,
     open = function()
-      require("claudecode") -- lazy-loads the plugin (it only has keys triggers)
-      vim.cmd("ClaudeCode")
+      Snacks.terminal("pi", { cwd = LazyVim.root() })
     end,
   },
 }
@@ -108,3 +107,6 @@ for _, p in ipairs(panes) do
     end
   end, { desc = "Toggle/focus " .. p.desc })
 end
+
+-- bang: `confirm` turns :qa into a per-terminal prompt that Esc aborts half-way through
+vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>qa!<cr>", { desc = "Quit all" })

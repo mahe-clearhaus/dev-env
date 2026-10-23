@@ -1,0 +1,10 @@
+#!/bin/sh
+# Picks the pi profile from the cwd, same personal/work boundary as .gitconfig's
+# includeIf on ~/mbh. A PATH shim rather than a shell function so it also covers
+# pi launched by herdr, snacks and anything else that execs the binary.
+case "$(pwd -P)/" in
+  "$HOME"/mbh/*) PI_CODING_AGENT_DIR="$HOME/.config/pi/mbh" ;;
+  *)             PI_CODING_AGENT_DIR="$HOME/.config/pi/work" ;;
+esac
+export PI_CODING_AGENT_DIR
+exec /opt/homebrew/bin/pi "$@"

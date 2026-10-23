@@ -102,5 +102,9 @@ set -gx FISH ~/.config/fish/config.fish # `source $FISH`, `nt $FISH`
 # ip 192.168.0.186
 # hostname n100
 # tailscale n100.taila5e9cc.ts.net
+# ~/.local/bin/pi picks work vs mbh from the cwd; this is just the floor for
+# anything that execs the binary directly and bypasses the shim.
+set -gx PI_CODING_AGENT_DIR ~/.config/pi/work # pi defaults to ~/.pi/agent, no XDG support
+
 alias mbh='herdr --remote mbh@n100.taila5e9cc.ts.net'
 alias venture='herdr --remote mbh@n100.taila5e9cc.ts.net --session venture'
